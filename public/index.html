@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wumpus World Logic Agent | AI Assignment 6</title>
+    <meta name="description" content="Dynamic Wumpus Logic Agent using Propositional Logic and Resolution Refutation. Built by 23F-0822 Nehza Nazir.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-content">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Wumpus World</h1>
+                    <p class="subtitle">Knowledge-Based Logic Agent</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="badge-label">23F-0822</span>
+                <span class="badge-name">Nehza Nazir</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="app-main">
+        <!-- Control Panel -->
+        <section id="control-panel" class="glass-card">
+            <h2 class="section-title"><i class="fas fa-sliders"></i> Configuration</h2>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="input-rows">Rows</label>
+                    <input type="number" id="input-rows" min="3" max="10" value="4">
+                </div>
+                <div class="control-group">
+                    <label for="input-cols">Columns</label>
+                    <input type="number" id="input-cols" min="3" max="10" value="4">
+                </div>
+                <div class="control-group">
+                    <label for="input-pits">Pits</label>
+                    <input type="number" id="input-pits" min="1" max="5" value="2">
+                </div>
+            </div>
+            <div class="button-row">
+                <button id="btn-init" class="btn btn-primary"><i class="fas fa-play"></i> New Game</button>
+                <button id="btn-step" class="btn btn-accent" disabled><i class="fas fa-shoe-prints"></i> Step</button>
+                <button id="btn-auto" class="btn btn-secondary" disabled><i class="fas fa-forward"></i> Auto-Run</button>
+                <button id="btn-reset" class="btn btn-ghost" disabled><i class="fas fa-rotate-left"></i> Reset</button>
+            </div>
+        </section>
+
+        <!-- Game Area -->
+        <div id="game-layout">
+            <!-- Grid Section -->
+            <section id="grid-section" class="glass-card">
+                <h2 class="section-title"><i class="fas fa-table-cells-large"></i> World Grid</h2>
+                <div id="grid-container">
+                    <div id="grid-placeholder">
+                        <i class="fas fa-gamepad"></i>
+                        <p>Configure the grid and click <strong>New Game</strong> to start</p>
+                    </div>
+                </div>
+                <!-- Legend -->
+                <div id="grid-legend">
+                    <div class="legend-item"><span class="legend-color agent"></span> Agent</div>
+                    <div class="legend-item"><span class="legend-color safe"></span> Safe</div>
+                    <div class="legend-item"><span class="legend-color unknown"></span> Unknown</div>
+                    <div class="legend-item"><span class="legend-color danger"></span> Danger</div>
+                    <div class="legend-item"><span class="legend-color gold"></span> Gold</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Metrics + Log -->
+            <aside id="right-panel">
+                <!-- Status Banner -->
+                <div id="status-banner" class="glass-card status-idle">
+                    <i class="fas fa-circle-info"></i>
+                    <span id="status-text">Awaiting initialization...</span>
+                </div>
+
+                <!-- Metrics Dashboard -->
+                <section id="metrics-panel" class="glass-card">
+                    <h2 class="section-title"><i class="fas fa-chart-line"></i> Real-Time Metrics</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card" id="metric-steps">
+                            <div class="metric-icon"><i class="fas fa-shoe-prints"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-value" id="val-steps">0</span>
+                                <span class="metric-label">Agent Steps</span>
+                            </div>
+                        </div>
+                        <div class="metric-card" id="metric-inferences">
+                            <div class="metric-icon"><i class="fas fa-gears"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-value" id="val-inferences">0</span>
+                                <span class="metric-label">Inference Steps</span>
+                            </div>
+                        </div>
+                        <div class="metric-card" id="metric-kb">
+                            <div class="metric-icon"><i class="fas fa-database"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-value" id="val-kb">0</span>
+                                <span class="metric-label">KB Clauses</span>
+                            </div>
+                        </div>
+                        <div class="metric-card" id="metric-safe">
+                            <div class="metric-icon"><i class="fas fa-shield-halved"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-value" id="val-safe">0</span>
+                                <span class="metric-label">Safe Cells</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Percepts -->
+                    <div id="percepts-display">
+                        <h3 class="sub-title">Current Percepts</h3>
+                        <div class="percepts-row">
+                            <div class="percept-indicator" id="percept-breeze">
+                                <i class="fas fa-wind"></i>
+                                <span>Breeze</span>
+                            </div>
+                            <div class="percept-indicator" id="percept-stench">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <span>Stench</span>
+                            </div>
+                            <div class="percept-indicator" id="percept-glitter">
+                                <i class="fas fa-gem"></i>
+                                <span>Glitter</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resolution Log -->
+                <section id="log-panel" class="glass-card">
+                    <h2 class="section-title"><i class="fas fa-terminal"></i> Resolution Log</h2>
+                    <div id="log-container">
+                        <div class="log-entry log-info">System ready. Configure grid and start a new game.</div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <p>Wumpus World Logic Agent &mdash; AI Assignment 6 &mdash; 23F-0822 Nehza Nazir &mdash; NUCES Chiniot-Faisalabad</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
