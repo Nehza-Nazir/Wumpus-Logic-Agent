@@ -9,7 +9,7 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 ## 🌐 Live Demo
 
 - **Vercel**: [Live URL will be added after deployment]
-- **GitHub**: [Repository URL]
+- **GitHub**: https://github.com/Nehza-Nazir/Wumpus-Logic-Agent
 - **LinkedIn**: [Post URL]
 
 ---
