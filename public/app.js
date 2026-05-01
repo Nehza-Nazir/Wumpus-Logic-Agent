@@ -238,8 +238,8 @@ btnInit.addEventListener("click", async () => {
         updatePercepts(gameState.current_percepts);
         setStatus("Game started! Agent at (0,0). Click Step to explore.", "active");
         addLog(data.message, "success");
-        if (gameState.current_percepts?.breeze) addLog("⚠ Breeze detected at (0,0)!", "warning");
-        if (gameState.current_percepts?.stench) addLog("⚠ Stench detected at (0,0)!", "warning");
+        if (gameState.current_percepts?.breeze) addLog("[WARNING] Breeze detected at (0,0)!", "warning");
+        if (gameState.current_percepts?.stench) addLog("[WARNING] Stench detected at (0,0)!", "warning");
         if (!gameState.current_percepts?.breeze && !gameState.current_percepts?.stench) {
             addLog("No percepts at (0,0). Adjacent cells likely safe.", "info");
         }
