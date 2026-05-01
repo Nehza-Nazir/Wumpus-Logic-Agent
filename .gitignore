@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+venv/
+node_modules/
+.vercel/
+test_api.py
+*.zip
