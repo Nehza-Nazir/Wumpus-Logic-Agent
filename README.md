@@ -10,7 +10,6 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 
 - **Vercel**: https://wumpus-logic-agent-weld.vercel.app/
 - **GitHub**: https://github.com/Nehza-Nazir/Wumpus-Logic-Agent
-- **LinkedIn**: [Post URL]
 
 ---
 
