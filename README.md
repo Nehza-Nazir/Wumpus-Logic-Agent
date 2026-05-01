@@ -1,4 +1,4 @@
-# Dynamic Wumpus Logic Agent 🧠
+# <i class="fas fa-brain"></i> Dynamic Wumpus Logic Agent
 
 **AI Assignment 6 | 23F-0822 Nehza Nazir | NUCES Chiniot-Faisalabad**
 
@@ -6,7 +6,7 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 
 ---
 
-## 🌐 Live Demo
+## <i class="fas fa-globe"></i> Live Demo
 
 - **Vercel**: https://wumpus-logic-agent-weld.vercel.app/
 - **GitHub**: https://github.com/Nehza-Nazir/Wumpus-Logic-Agent
@@ -14,7 +14,7 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 
 ---
 
-## 🎯 Features
+## <i class="fas fa-bullseye"></i> Features
 
 - **Dynamic Grid Sizing**: Configurable Rows × Columns (3×3 to 10×10)
 - **Knowledge-Based Agent**: Maintains a Propositional Logic KB updated with percepts
@@ -25,7 +25,7 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 
 ---
 
-## 🏗️ Architecture
+## <i class="fas fa-building"></i> Architecture
 
 ### Backend (Python / Flask)
 
@@ -46,7 +46,7 @@ A web-based Knowledge-Based Agent that navigates a Wumpus World grid using **Pro
 
 ---
 
-## 🔬 How the Resolution Engine Works
+## <i class="fas fa-microscope"></i> How the Resolution Engine Works
 
 ### 1. Knowledge Base (Tell)
 
@@ -88,7 +88,7 @@ PERCEIVE → TELL KB → ASK (Resolution) → DECIDE → MOVE
 
 ---
 
-## 🚀 Quick Start
+## <i class="fas fa-rocket"></i> Quick Start
 
 ### Prerequisites
 
@@ -119,7 +119,7 @@ vercel --prod
 
 ---
 
-## 📁 Project Structure
+## <i class="fas fa-folder-open"></i> Project Structure
 
 ```
 AI-AS-06/
@@ -137,7 +137,7 @@ AI-AS-06/
 
 ---
 
-## 📊 Metrics Tracked
+## <i class="fas fa-chart-bar"></i> Metrics Tracked
 
 | Metric | Description |
 |--------|-------------|
@@ -148,7 +148,7 @@ AI-AS-06/
 
 ---
 
-## 🎮 How to Use
+## <i class="fas fa-gamepad"></i> How to Use
 
 1. Set grid dimensions (Rows × Columns) and number of Pits
 2. Click **New Game** to initialize
@@ -159,7 +159,7 @@ AI-AS-06/
 
 ---
 
-## 👤 Author
+## <i class="fas fa-user"></i> Author
 
 **Nehza Nazir** | 23F-0822  
 BSc Artificial Intelligence  
@@ -167,6 +167,6 @@ NUCES Chiniot-Faisalabad Campus
 
 ---
 
-## 📝 License
+## <i class="fas fa-file-contract"></i> License
 
 This project was developed as an academic assignment for AI coursework.
